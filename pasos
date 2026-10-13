@@ -1,0 +1,19 @@
+La idea es construir un sistema que todos los días recolecte ofertas de trabajo en datos, las guarde, las procese y te muestre qué tecnologías se piden más. Te sirve como proyecto de portfolio y, a la vez, como herramienta real para tu búsqueda.
+
+La fuente de datos
+Get on Board tiene una API pública que no requiere configuración y da acceso a lo mismo que se ve en el sitio sin iniciar sesión. Incluye ofertas publicadas, empresas, categorías, tecnologías, ubicaciones y búsqueda por texto, así que no hace falta scrapear nada.
+
+Cómo fluyen los datos
+API de Get on Board → extracción → base de datos (datos crudos) → transformación → tablas limpias → dashboard
+
+Construilo por etapas (cada una ya es mostrable)
+
+Extracción (semana 1–2): un script en Python con requests que consulte ofertas de la categoría de datos y las guarde en Postgres tal cual vienen (en una tabla “raw”). Acá aprendés a paginar, manejar errores y evitar duplicados.
+Transformación (semana 3–4): con SQL, limpiar los datos y armar tablas útiles: ofertas, empresas, tecnologías por oferta, seniority, modalidad (remoto/híbrido). Primero en SQL plano y después lo pasás a dbt; así aprendés dbt con algo que ya entendés.
+Automatización (semana 5–6): Docker para levantar todo junto y Airflow para correr el pipeline cada día a la mañana.
+Visualización (semana 7): un dashboard en Power BI (que ya manejás) o en Angular, con preguntas como:
+¿Qué tecnologías aparecen en más ofertas de data engineer?
+¿Cuántas ofertas son remotas?
+¿Qué piden en junior vs. senior?
+¿Cómo cambia la demanda mes a mes?
+Extra para lucirte (opcional): reemplazar el script de extracción por un microservicio en Spring Boot, o subir el warehouse a BigQuery.

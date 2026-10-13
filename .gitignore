@@ -1,0 +1,6 @@
+.env
+.ipynb_checkpoints/
+.virtual_documents/
+__pycache__/
+venv/
+raw_ofertas*.json
