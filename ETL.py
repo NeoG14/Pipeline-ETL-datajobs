@@ -76,6 +76,25 @@ def guardar_ofertas(ofertas, categoria):
         conn.close()
     print(f"Guardadas {len(filas)} ofertas en raw_ofertas")
 
+def cargar_referencia(recurso, tabla, columna_id):
+    response = requests.get(f"{ENDPOINT}/{recurso}", timeout=30)
+    response.raise_for_status()
+    filas = [(int(item["id"]), item["attributes"]["name"])
+                for item in response.json()["data"]]
+
+    conn = conectar()
+    try:
+        with conn:
+            with conn.cursor() as cur:
+                execute_values(cur, f"""
+                INSERT INTO {tabla} ({columna_id}, nombre) VALUES %s
+                ON CONFLICT ({columna_id})                        
+                DO UPDATE SET nombre = EXCLUDED.nombre
+                """, filas)
+    finally:
+        conn.close()
+    print(f"Guardadas {len(filas)} filas en {tabla}")
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Descarga ofertas de Get on Board")
@@ -87,3 +106,5 @@ if __name__ == "__main__":
         print("No se pudo descargar nada")
     else:
         guardar_ofertas(ofertas, args.categoria)
+        cargar_referencia("seniorities", "ref_seniorities", "seniority_id")
+        cargar_referencia("modalities", "ref_modalities", "modality_id")
