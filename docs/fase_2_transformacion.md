@@ -50,6 +50,16 @@ Ofertas de `data-science-analytics` vigentes al 2026-10-14 (106 ofertas).
 - Databricks (17%) aparece más que Airflow (15%) y dbt (13%).
 - El ranking coincide con la medición hecha al principio en Python (diferencias de 1-2 puntos), lo que da confianza en las consultas.
 
+### Alcance geográfico
+| Grupo | Ofertas |
+|---|---|
+| Presencial o híbrido | 66 |
+| Remoto con residencia en un país | 32 |
+| Remoto global | 8 |
+
+Presenciales o híbridas por país (una oferta con varios países cuenta en cada uno):
+Chile 62, México 6, Colombia 4, Perú 3.
+
 ## Límites
 - Una sola fuente (Get on Board) y de toda Latinoamérica, no solo de Argentina.
 - Es una foto del momento en que se corre el script, no un histórico completo de las ofertas.
@@ -57,3 +67,5 @@ Ofertas de `data-science-analytics` vigentes al 2026-10-14 (106 ofertas).
 - Con 106 ofertas, una oferta vale cerca de un punto: diferencias de uno o dos puntos no son significativas.
 - La búsqueda por texto puede dar falsos positivos o negativos
 - Todavía no se distingue qué ofertas puede tomar alguien que vive en Argentina.
+- A las ofertas `remote_local` no se les puede asignar país: la API no lo informa en la oferta.
+- "Remoto global" se basa en el texto de Get on Board para `fully_remote` ("puedes residir en cualquier parte del mundo"), verificado en una oferta.
