@@ -1,0 +1,5 @@
+.venv/
+.git/
+logs/
+airflow/logs/
+dbt_ofertas/target/

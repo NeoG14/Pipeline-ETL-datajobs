@@ -20,5 +20,9 @@ with DAG(
         task_id="descargar_programming",
         bash_command="python /opt/airflow/proyecto/ETL.py programming",
     )
+    dbt_build = BashOperator(
+        task_id="dbt_build",
+        bash_command="/home/airflow/dbt_venv/bin/dbt build --project-dir /opt/airflow/proyecto/dbt_ofertas",
+    )
 
-    datos >> programacion
+    datos >> programacion >> dbt_build

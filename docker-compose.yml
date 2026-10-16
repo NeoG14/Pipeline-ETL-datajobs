@@ -1,6 +1,7 @@
 x-airflow-common:
   &airflow-common
-  image: apache/airflow:3.3.2
+  image: pipeline-airflow:3.3.2
+  build: .
   env_file:
     - .env
   environment:
@@ -18,7 +19,10 @@ x-airflow-common:
     AIRFLOW_CONFIG: '/opt/airflow/config/airflow.cfg'
     DB_HOST: postgres
     DB_PORT: "5432"
-    _PIP_ADDITIONAL_REQUIREMENTS: python-dotenv
+    DBT_PROFILES_DIR: /opt/airflow/proyecto/airflow/dbt_profiles
+    DBT_TARGET_PATH: /tmp/dbt_target
+    DBT_LOG_PATH: /tmp/dbt_logs
+    DBT_SEND_ANONYMOUS_USAGE_STATS: "false"
   volumes:
     - ./airflow/dags:/opt/airflow/dags
     - ./airflow/logs:/opt/airflow/logs
