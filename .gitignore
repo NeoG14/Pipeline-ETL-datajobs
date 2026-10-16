@@ -4,3 +4,5 @@
 __pycache__/
 venv/
 raw_ofertas*.json
+airflow/logs/
+airflow/config/
