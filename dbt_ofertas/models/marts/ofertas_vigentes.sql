@@ -27,6 +27,7 @@ SELECT
     o.paises,
     o.url,
     s.nombre AS seniority,
+    o.seniority_id AS seniority_orden,
     m.nombre AS tipo_contrato
 FROM ofertas AS o
 JOIN ultima_descarga AS u
