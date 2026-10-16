@@ -27,3 +27,17 @@ models:
               arguments:
                 to: ref('ref_skills')
                 field: skill
+
+  - name: ofertas_paises
+    description: "Una fila por cada país que lista cada oferta vigente. Excluye la marca Remote, que no es un país."
+    columns:
+      - name: job_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('ofertas_vigentes')
+                field: job_id
+      - name: pais
+        data_tests:
+          - not_null              
