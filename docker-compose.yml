@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:18
+    container_name: pg-ofertas
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql
+      - ./sql:/docker-entrypoint-initdb.d:ro
+
+volumes:
+  pgdata:
