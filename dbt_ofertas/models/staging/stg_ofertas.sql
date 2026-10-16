@@ -1,0 +1,21 @@
+SELECT
+    job_id,
+    fecha_descarga,
+    categoria,
+    payload->'attributes'->>'title'                          AS titulo,
+    payload->'attributes'->>'category_name'                  AS categoria_nombre,
+    (payload->'attributes'->>'remote')::boolean              AS remoto,
+    payload->'attributes'->>'remote_modality'                AS modalidad_remota,
+    (payload->'attributes'->>'min_salary')::int              AS salario_min,
+    (payload->'attributes'->>'max_salary')::int              AS salario_max,
+    to_timestamp((payload->'attributes'->>'published_at')::bigint) AS fecha_publicacion,
+    (payload->'attributes'->>'applications_count')::int      AS postulaciones,
+    (payload->'attributes'->'seniority'->'data'->>'id')::int AS seniority_id,
+    (payload->'attributes'->'modality'->'data'->>'id')::int  AS modality_id,
+    (payload->'attributes'->'company'->'data'->>'id')::int   AS company_id,
+    payload->'attributes'->'countries'                       AS paises,
+    payload->'links'->>'public_url'                          AS url,
+    payload->'attributes'->>'description'                    AS descripcion,
+    payload->'attributes'->>'functions'                      AS funciones,
+    payload->'attributes'->>'desirable'                      AS deseables
+FROM {{ source('getonboard', 'raw_ofertas') }}

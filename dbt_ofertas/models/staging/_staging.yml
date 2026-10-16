@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: stg_ofertas
+    description: "Ofertas de Get on Board: una fila por oferta y día de descarga, con columnas tipadas."
+    columns:
+      - name: job_id
+        data_tests:
+          - not_null
+      - name: fecha_descarga
+        data_tests:
+          - not_null
+      - name: modalidad_remota
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['fully_remote', 'remote_local', 'hybrid', 'no_remote']
+      - name: seniority_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: source('getonboard', 'ref_seniorities')
+                field: seniority_id
+      - name: modality_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: source('getonboard', 'ref_modalities')
+                field: modality_id

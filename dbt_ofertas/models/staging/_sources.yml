@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: getonboard
+    schema: public
+    tables:
+      - name: raw_ofertas
+      - name: ref_seniorities
+      - name: ref_modalities

@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: ofertas_vigentes
+    description: "Ofertas de la última descarga de cada categoría, con seniority, tipo de contrato y alcance geográfico."
+    columns:
+      - name: job_id
+        data_tests:
+          - unique
+          - not_null
+      - name: alcance
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['Remoto global', 'Remoto con residencia en un país', 'Presencial o híbrido']
+      - name: seniority
+        data_tests:
+          - not_null
+
+  - name: ofertas_skills
+    description: "Una fila por cada habilidad que menciona cada oferta vigente."
+    columns:
+      - name: skill
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('ref_skills')
+                field: skill
