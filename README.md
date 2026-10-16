@@ -27,14 +27,13 @@ Ranking completo y metodología en [docs/fase_2_transformacion.md](docs/fase_2_t
 
 ## Cómo correrlo
 
-1. Crear la base: `CREATE DATABASE ofertas_db;`
-2. Instalar dependencias: `pip install -r requirements.txt`
-3. Copiar `.env.example` a `.env` y completar la contraseña de PostgreSQL.
-4. Ejecutar en orden los archivos de `sql/` del 01 al 06.
-5. Descargar las ofertas:
-   `python ETL.py data-science-analytics`
-   `python ETL.py programming`
-6. Ejecutar `sql/07_ranking_skills.sql` para ver el ranking.
+Requisitos: Docker Desktop.
+1. Copiar `.env.example` a `.env` y completar los valores.
+2. Levantar todo: `docker compose up -d`
+   - Crea la base `ofertas_db` con sus tablas y vistas (scripts de `sql/`).
+   - Levanta Airflow en http://localhost:8080 (usuario y contraseña: `airflow`).
+3. En Airflow, activar el DAG `ofertas_diarias`. Descarga las ofertas todos los días a las 15:00 (hora de Argentina).
+4. Para ver los resultados, ejecutar las consultas de `sql/informes/`.
 
 ## Límites
 
