@@ -132,6 +132,6 @@ La calidad se controla con **16 tests de dbt** (unicidad, nulos, valores aceptad
 
 **Nicolás Alvarez de Oliveira** · Analista Programador Universitario (UNLP), estudiante de Ciencia de Datos para Organizaciones (UNLP).
 
-[GitHub](https://github.com/NeoG14) · LinkedIn: _agregar link_
+[GitHub](https://github.com/NeoG14) · [LinkedIn](https://www.linkedin.com/in/nicolas-alvarez-de-oliveira)
 
 Datos: API pública de [Get on Board](https://www.getonbrd.com).
