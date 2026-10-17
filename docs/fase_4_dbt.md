@@ -25,7 +25,7 @@ dbt resuelve las tres cosas: cada modelo declara de qué depende con `ref()` y `
 dbt_ofertas/
 ├── dbt_project.yml
 ├── seeds/
-│   └── ref_skills.csv          # 19 habilidades con su patrón regex
+│   └── ref_skills.csv          # 19 habilidades con su patrón regex y su grupo
 └── models/
     ├── staging/
     │   ├── _sources.yml        # tablas crudas que carga el ETL
@@ -74,16 +74,20 @@ Agrega:
 ### `ofertas_paises`
 **Grano: oferta × país.** Abre el array JSON de países con `jsonb_array_elements_text` y excluye el valor `'Remote'`, que no es un país. En la práctica, todas sus filas son ofertas presenciales o híbridas.
 
-## Tests (14)
+Cada habilidad pertenece a un **grupo** definido en el seed: Lenguajes, Ingeniería de datos y nube, BI y visualización, u Otras herramientas. El tablero lo usa para colorear las barras.
+
+## Tests (16)
 
 | Modelo | Tests |
 |---|---|
 | `stg_ofertas` | `job_id` y `fecha_descarga` no nulos; `modalidad_remota` con valores aceptados; `seniority_id` y `modality_id` existen en sus tablas de referencia |
 | `ofertas_vigentes` | `job_id` único y no nulo; `alcance` con valores aceptados; `seniority` no nulo |
-| `ofertas_skills` | `skill` no nulo y existente en `ref_skills` |
+| `ofertas_skills` | `skill` no nulo y existente en `ref_skills`; `grupo` no nulo y con valores aceptados |
 | `ofertas_paises` | `job_id` no nulo y existente en `ofertas_vigentes`; `pais` no nulo |
 
-**Criterio:** los tests protegen **reglas que siempre tienen que cumplirse** (invariantes). Por ejemplo, no hay test de valores aceptados para `pais`: la API puede sumar países nuevos en cualquier momento, y eso no es un error.
+**Criterio:** los tests protegen **reglas que siempre tienen que cumplirse** (invariantes). Por ejemplo, no hay test de valores aceptados para `pais`: la API puede sumar países nuevos en cualquier momento, y eso no es un error. En cambio, `grupo` sí lo tiene: los grupos los definimos nosotros, así que un valor fuera de la lista es un error de tipeo.
+
+> Si cambian las columnas de un seed, hay que recargarlo con `dbt seed --full-refresh`, porque dbt no modifica la estructura de una tabla de seed ya existente.
 
 ## Dos perfiles de conexión
 

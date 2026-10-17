@@ -59,6 +59,8 @@ Arriba hay tres tarjetas: **ofertas vigentes**, **% remotas desde cualquier paí
 
 **Cuidado: columna, no tabla.** Una primera versión usaba `REMOVEFILTERS(Habilidades)`, sobre la tabla entera. En DAX, una tabla del lado "varios" incluye, a través de la relación, las columnas de la tabla del lado "uno" (la *tabla expandida*). Quitar los filtros de `Habilidades` quitaba también los de `Ofertas`, incluido el segmentador de área: el denominador pasaba de 115 a 434 y SQL caía de 66,1 % a 17,5 %. Quitando el filtro solo de la columna `skill`, el resto de los filtros se respeta.
 
+Al agregar el grupo como leyenda, cada barra pasa a tener un segundo filtro sobre `Habilidades` (`grupo`). Por eso el denominador también lo excluye.
+
 ## Medidas (DAX)
 
 ```dax
@@ -69,7 +71,7 @@ Ofertas con habilidad = DISTINCTCOUNT(Habilidades[job_id])
 % de ofertas =
 DIVIDE(
     [Ofertas con habilidad],
-    CALCULATE([Total ofertas], REMOVEFILTERS(Habilidades[skill]))
+    CALCULATE([Total ofertas], REMOVEFILTERS(Habilidades[skill], Habilidades[grupo]))
 )
 
 % del Total =
@@ -99,7 +101,11 @@ Datos al = MAX(Ofertas[fecha_descarga])
 - **Sin ejes ni cuadrícula** donde las barras tienen etiqueta: el mismo dato aparecía dos veces.
 - **Conteos en el tooltip.** Con 115 ofertas, un 2,6 % son 3 ofertas. Ver el conteo ayuda a juzgar qué tan sólido es cada porcentaje.
 - **Filtrado cruzado** en lugar del resaltado que trae Power BI por defecto. El resaltado está pensado para mostrar una parte de un total, y con porcentajes no tiene sentido.
-- **Un solo color**: todas las barras representan lo mismo (ofertas), así que el color no tiene que distinguir nada.
+- **Color solo donde significa algo** (tema en `power_bi/tema_ofertas.json`):
+  - **Habilidades por grupo** (columna `grupo` del seed `ref_skills`): Lenguajes en azul, Ingeniería de datos y nube en naranja, BI y visualización en verde agua, y Otras herramientas en gris. Responde a simple vista si el mercado pide más perfil de analista o de ingeniero. Se usan solo 3 colores más gris porque, al validar la paleta, un cuarto color siempre se confundía con alguno de los otros (con daltonismo o incluso con visión normal).
+  - **Degradados en las variables ordinales**: seniority (según `seniority_orden`) y alcance van de azul claro a azul oscuro. Más oscuro = más senior, o más remoto.
+  - La tarjeta de remoto global usa el mismo azul oscuro que la barra "Remoto global", para que el ojo las conecte.
+- **Diseño "en tarjetas"**: fondo de página gris claro y visuales blancos, con márgenes de 24 px y separación de 16 px en un lienzo de 1920 × 1080.
 
 ## Validación
 
