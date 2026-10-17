@@ -27,6 +27,12 @@ models:
               arguments:
                 to: ref('ref_skills')
                 field: skill
+      - name: grupo
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Lenguajes', 'Ingeniería de datos y nube', 'BI y visualización', 'Otras herramientas']
 
   - name: ofertas_paises
     description: "Una fila por cada país que lista cada oferta vigente. Excluye la marca Remote, que no es un país."

@@ -17,7 +17,8 @@ SELECT
     v.categoria,
     v.alcance,
     v.seniority,
-    k.skill
+    k.skill,
+    k.grupo
 FROM vigentes AS v
 JOIN textos AS t
   ON t.job_id = v.job_id

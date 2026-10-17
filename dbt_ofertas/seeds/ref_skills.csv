@@ -1,20 +1,20 @@
-skill,patron
-SQL,\ysql\y
-Python,\ypython\y
-ETL/ELT,\y(etl|elt)\y
-Power BI,\ypower ?bi\y
-AWS,\yaws\y
-Azure,\yazure\y
-Airflow,\yairflow\y
-dbt,\ydbt\y
-Spark,\y(py)?spark\y
-Excel,\yexcel\y
-Tableau,\ytableau\y
-Git,\ygit\y
-Docker,\ydocker\y
-Databricks,\ydatabricks\y
-GCP,\y(gcp|google cloud)\y
-BigQuery,\ybig ?query\y
-Snowflake,\ysnowflake\y
-Pandas,\ypandas\y
-Kafka,\ykafka\y
+skill,patron,grupo
+SQL,\ysql\y,Lenguajes
+Python,\ypython\y,Lenguajes
+ETL/ELT,\y(etl|elt)\y,Ingeniería de datos y nube
+Power BI,\ypower ?bi\y,BI y visualización
+AWS,\yaws\y,Ingeniería de datos y nube
+Azure,\yazure\y,Ingeniería de datos y nube
+Airflow,\yairflow\y,Ingeniería de datos y nube
+dbt,\ydbt\y,Ingeniería de datos y nube
+Spark,\y(py)?spark\y,Ingeniería de datos y nube
+Excel,\yexcel\y,BI y visualización
+Tableau,\ytableau\y,BI y visualización
+Git,\ygit\y,Otras herramientas
+Docker,\ydocker\y,Otras herramientas
+Databricks,\ydatabricks\y,Ingeniería de datos y nube
+GCP,\y(gcp|google cloud)\y,Ingeniería de datos y nube
+BigQuery,\ybig ?query\y,Ingeniería de datos y nube
+Snowflake,\ysnowflake\y,Ingeniería de datos y nube
+Pandas,\ypandas\y,Lenguajes
+Kafka,\ykafka\y,Ingeniería de datos y nube
